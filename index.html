@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roda de Cores Complementares</title>
+<meta name="description" content="Explore o círculo cromático e descubra as cores complementares de qualquer tom, com uma roda de cores interativa.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+</div>
+
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-icon"><i class="fa-solid fa-circle-half-stroke"></i></span>
+    <h1>Roda de Cores <strong>Complementares</strong></h1>
+  </div>
+  <p class="subtitle">Gire, clique ou arraste no círculo cromático e veja instantaneamente sua cor complementar — a cor oposta na roda.</p>
+</header>
+
+<main class="app" id="app">
+
+  <section class="wheel-section" aria-label="Círculo cromático interativo">
+    <div class="wheel-wrap">
+      <div class="wheel" id="wheel">
+        <div class="wheel-inner-ring" aria-hidden="true"></div>
+        <svg id="wheel-lines" viewBox="0 0 400 400" class="wheel-lines" aria-hidden="true">
+          <line id="connector-line" x1="200" y1="200" x2="200" y2="200"></line>
+        </svg>
+        <button class="handle" id="handle-a" title="Cor selecionada" aria-label="Alça da cor selecionada"></button>
+        <button class="handle handle-complement" id="handle-b" title="Cor complementar" aria-label="Alça da cor complementar" tabindex="-1"></button>
+        <div class="wheel-center" id="wheel-center">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </div>
+      </div>
+    </div>
+    <p class="wheel-hint"><i class="fa-solid fa-hand-pointer"></i> Arraste a alça branca ou toque em qualquer ponto do círculo</p>
+  </section>
+
+  <section class="panel" aria-label="Detalhes das cores selecionadas">
+
+    <div class="swatches">
+      <article class="swatch-card" id="card-a">
+        <div class="swatch" id="swatch-a"></div>
+        <div class="swatch-info">
+          <h2>Cor Selecionada</h2>
+          <dl>
+            <div><dt>HEX</dt><dd id="hex-a">#FF0000</dd></div>
+            <div><dt>RGB</dt><dd id="rgb-a">255, 0, 0</dd></div>
+            <div><dt>HSL</dt><dd id="hsl-a">0°, 100%, 50%</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <div class="vs-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+
+      <article class="swatch-card" id="card-b">
+        <div class="swatch" id="swatch-b"></div>
+        <div class="swatch-info">
+          <h2>Cor Complementar</h2>
+          <dl>
+            <div><dt>HEX</dt><dd id="hex-b">#00FFFF</dd></div>
+            <div><dt>RGB</dt><dd id="rgb-b">0, 255, 255</dd></div>
+            <div><dt>HSL</dt><dd id="hsl-b">180°, 100%, 50%</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+
+    <div class="preview" id="preview" aria-label="Pré-visualização das cores lado a lado">
+      <div class="preview-half" id="preview-a"></div>
+      <div class="preview-half" id="preview-b"></div>
+    </div>
+
+    <div class="extra-controls">
+      <label for="lightness-range">
+        <i class="fa-solid fa-sun"></i> Luminosidade
+        <span id="lightness-value">50%</span>
+      </label>
+      <input type="range" id="lightness-range" min="10" max="90" value="50">
+
+      <div class="palette-row">
+        <span class="palette-label"><i class="fa-solid fa-shapes"></i> Paletas rápidas</span>
+        <div class="palette-buttons" id="palette-buttons">
+          <button data-hue="0">Vermelho</button>
+          <button data-hue="30">Laranja</button>
+          <button data-hue="55">Amarelo</button>
+          <button data-hue="130">Verde</button>
+          <button data-hue="195">Ciano</button>
+          <button data-hue="230">Azul</button>
+          <button data-hue="270">Roxo</button>
+          <button data-hue="320">Magenta</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="copy-btn" id="copy-btn">
+      <i class="fa-regular fa-copy"></i> Copiar códigos HEX
+    </button>
+    <p class="copy-feedback" id="copy-feedback" role="status"></p>
+
+  </section>
+</main>
+
+<section class="about">
+  <h2><i class="fa-solid fa-circle-info"></i> O que são cores complementares?</h2>
+  <p>Cores complementares são pares de cores que ficam em lados opostos do círculo cromático (a 180° de distância). Quando colocadas lado a lado, criam o maior contraste visual possível e se destacam intensamente uma da outra — por isso são muito usadas em design, moda e artes visuais para chamar atenção e criar equilíbrio.</p>
+  <div class="about-examples">
+    <div class="example"><span class="dot" style="background:#e63946"></span> Vermelho <i class="fa-solid fa-arrow-right"></i> <span class="dot" style="background:#46e6e0"></span> Ciano</div>
+    <div class="example"><span class="dot" style="background:#f4a300"></span> Laranja <i class="fa-solid fa-arrow-right"></i> <span class="dot" style="background:#005ef4"></span> Azul</div>
+    <div class="example"><span class="dot" style="background:#f6e900"></span> Amarelo <i class="fa-solid fa-arrow-right"></i> <span class="dot" style="background:#0900f6"></span> Roxo/Violeta</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>Feito com <i class="fa-solid fa-heart"></i> para explorar teoria das cores.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
